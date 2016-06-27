@@ -183,9 +183,8 @@ public class PlatzVerkaufsWerkzeug {
     private void verkaufePlaetze(Vorstellung vorstellung) {
 	Set<Platz> plaetze = _ui.getPlatzplan().getAusgewaehltePlaetze();
 
-	if (_barzahlungsWerkzeug.verkaufe(plaetze, _vorstellung.getPreisFuerPlaetze(plaetze))) {
+	if (_barzahlungsWerkzeug.verkaufe(_vorstellung.getPreisFuerPlaetze(plaetze)))
 	    vorstellung.verkaufePlaetze(plaetze);
-	}
 
 	aktualisierePlatzplan();
 

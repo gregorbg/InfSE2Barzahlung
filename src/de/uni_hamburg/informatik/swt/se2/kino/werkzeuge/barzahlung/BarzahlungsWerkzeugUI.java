@@ -5,13 +5,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.text.NumberFormat;
-import java.util.Locale;
 
 public class BarzahlungsWerkzeugUI
 {
     private static final String TITEL = "Barzahlung";
 
     private JDialog _dialog;
+    private JButton _okButton;
 
     public BarzahlungsWerkzeugUI() {
         _dialog = new JDialog();
@@ -39,8 +39,9 @@ public class BarzahlungsWerkzeugUI
         NumberFormatter gezahltFormatter = new NumberFormatter(gezahltFormat);
         JFormattedTextField gezahltField = new JFormattedTextField(gezahltFormatter);
 
-        JButton okButton = new JButton("OK");
+        _okButton = new JButton("OK");
         JButton beendenButton = new JButton("Beenden");
+        beendenButton.addActionListener(e -> _dialog.dispose());
 
         contentPane.add(preisTitelLabel);
         contentPane.add(preisLabel);
@@ -48,7 +49,7 @@ public class BarzahlungsWerkzeugUI
         contentPane.add(gezahltField);
         contentPane.add(restTitelLabel);
         contentPane.add(restLabel);
-        contentPane.add(okButton);
+        contentPane.add(_okButton);
         contentPane.add(beendenButton);
 
         _dialog.getContentPane().add(contentPane, BorderLayout.CENTER);

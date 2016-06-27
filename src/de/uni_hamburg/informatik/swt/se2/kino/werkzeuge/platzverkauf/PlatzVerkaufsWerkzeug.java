@@ -96,7 +96,6 @@ public class PlatzVerkaufsWerkzeug
      */
     private void fuehreBarzahlungDurch()
     {
-        _barzahlungsWerkzeug.verkaufe();
         verkaufePlaetze(_vorstellung);
     }
 

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Platz;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Kinosaal;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Vorstellung;
+import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.barzahlung.BarzahlungsWerkzeug;
 
 /**
  * Mit diesem Werkzeug können Plätze verkauft und storniert werden. Es arbeitet
@@ -28,12 +29,17 @@ public class PlatzVerkaufsWerkzeug
 
     private PlatzVerkaufsWerkzeugUI _ui;
 
+    private BarzahlungsWerkzeug _barzahlungsWerkzeug;
+
     /**
      * Initialisiert das PlatzVerkaufsWerkzeug.
      */
     public PlatzVerkaufsWerkzeug()
     {
         _ui = new PlatzVerkaufsWerkzeugUI();
+
+        _barzahlungsWerkzeug = new BarzahlungsWerkzeug();
+
         registriereUIAktionen();
         // Am Anfang wird keine Vorstellung angezeigt:
         setVorstellung(null);
@@ -90,6 +96,7 @@ public class PlatzVerkaufsWerkzeug
      */
     private void fuehreBarzahlungDurch()
     {
+        _barzahlungsWerkzeug.verkaufe();
         verkaufePlaetze(_vorstellung);
     }
 

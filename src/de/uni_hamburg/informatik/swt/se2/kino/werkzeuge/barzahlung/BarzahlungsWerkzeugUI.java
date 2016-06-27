@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -19,8 +18,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.NumberFormatter;
-
-import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Platz;
 
 public class BarzahlungsWerkzeugUI {
     private static final String TITEL = "Barzahlung";
@@ -106,7 +103,7 @@ public class BarzahlungsWerkzeugUI {
 	_dialog.getContentPane().add(contentPane, BorderLayout.CENTER);
     }
 
-    public boolean zeigeDialog(Set<Platz> t, int p) {
+    public boolean zeigeDialog(int p) {
 	_preis = p;
 	preisLabel.setText(formatter.format((p / 100)));
 
@@ -119,7 +116,7 @@ public class BarzahlungsWerkzeugUI {
     }
 
     private void okListener() {
-	_gezahlt = Double.parseDouble((gezahltField.getText()));
+	// _gezahlt = Double.parseDouble((gezahltField.getText()));
 
 	// JOptionPane.showMessageDialog(null, "_PReis: " + _gezahlt, "", JOptionPane.INFORMATION_MESSAGE);
 

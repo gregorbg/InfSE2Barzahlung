@@ -105,6 +105,7 @@ public class BarzahlungsWerkzeugUI {
 
     public boolean zeigeDialog(int p) {
 	_preis = p;
+	_bezahlt = false;
 	preisLabel.setText(formatter.format((p / 100)));
 
 	_dialog.setSize(500, 300);

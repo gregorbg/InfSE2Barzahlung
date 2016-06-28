@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.swing.JPanel;
 
+import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geldbetrag;
 import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Platz;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Kinosaal;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Vorstellung;
@@ -96,7 +97,12 @@ public class PlatzVerkaufsWerkzeug
      */
     private void fuehreBarzahlungDurch()
     {
-        verkaufePlaetze(_vorstellung);
+        Set<Platz> plaetze = _ui.getPlatzplan().getAusgewaehltePlaetze();
+        Geldbetrag zuZahlen = _vorstellung.getPreisFuerPlaetze(plaetze);
+
+        if (_barzahlungsWerkzeug.verkaufe(zuZahlen)) {
+            verkaufePlaetze(_vorstellung);
+        }
     }
 
     /**
@@ -119,15 +125,15 @@ public class PlatzVerkaufsWerkzeug
     {
         if (istVerkaufenMoeglich(plaetze))
         {
-            int preis = _vorstellung.getPreisFuerPlaetze(plaetze);
+            Geldbetrag preis = _vorstellung.getPreisFuerPlaetze(plaetze);
             _ui.getPreisLabel().setText(
-                    "Gesamtpreis: " + preis + " Eurocent");
+                    "Gesamtpreis: " + preis.gibFormatiertenString());
         }
         else if (istStornierenMoeglich(plaetze))
         {
-            int preis = _vorstellung.getPreisFuerPlaetze(plaetze);
+            Geldbetrag preis = _vorstellung.getPreisFuerPlaetze(plaetze);
             _ui.getPreisLabel().setText(
-                    "Gesamtstorno: " + preis + " Eurocent");
+                    "Gesamtstorno: " + preis.gibFormatiertenString());
         }
         else if (!plaetze.isEmpty())
         {
@@ -137,7 +143,7 @@ public class PlatzVerkaufsWerkzeug
         else
         {
             _ui.getPreisLabel().setText(
-                    "Gesamtpreis: 0 Eurocent");
+                    "Gesamtpreis: " + new Geldbetrag().gibFormatiertenString());
         }
     }
 
@@ -189,7 +195,6 @@ public class PlatzVerkaufsWerkzeug
     /**
      * Setzt am Platzplan die Anzahl der Reihen und der Sitze.
      * 
-     * @param saal Ein Saal mit dem der Platzplan initialisiert wird.
      */
     private void initialisierePlatzplan(int reihen, int sitzeProReihe)
     {

@@ -18,15 +18,15 @@ public class Geldbetrag
         _eurocent = eurocent;
     }
 
-    public int gibEurocent() {
+    public int getEurocent() {
         return _eurocent;
     }
 
     public Geldbetrag diff(Geldbetrag other) {
-        return new Geldbetrag(_eurocent - other.gibEurocent());
+        return new Geldbetrag(_eurocent - other.getEurocent());
     }
 
-    public String gibFormatiertenString() {
+    public String getFormatiertenString() {
         return euroFormat.format((float) _eurocent / 100);
     }
 }

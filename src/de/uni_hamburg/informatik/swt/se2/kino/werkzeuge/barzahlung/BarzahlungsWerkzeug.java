@@ -33,11 +33,11 @@ public class BarzahlungsWerkzeug
      */
     private void registriereUIAktionen()
     {
-        _ui.gibOkButton().addActionListener(e -> pruefeEingabe());
+        _ui.getOkButton().addActionListener(e -> pruefeEingabe());
 
-        _ui.gibAbbrechenButton().addActionListener(e -> _ui.schließeFenster(0));
+        _ui.getAbbrechenButton().addActionListener(e -> _ui.schließeFenster(0));
 
-        _ui.gibGezahltTextField().getDocument().addDocumentListener(new DocumentListener()
+        _ui.getGezahltTextField().getDocument().addDocumentListener(new DocumentListener()
         {
             @Override
             public void insertUpdate(DocumentEvent e)
@@ -58,7 +58,7 @@ public class BarzahlungsWerkzeug
             }
         });
 
-        _ui.gibGezahltTextField().addKeyListener(new KeyAdapter()
+        _ui.getGezahltTextField().addKeyListener(new KeyAdapter()
         {
             @Override
             public void keyPressed(KeyEvent e)
@@ -82,43 +82,43 @@ public class BarzahlungsWerkzeug
 
         _betrag = betrag;
 
-        _ui.setzePreisText(betrag);
-        _ui.setzeRestbetragText(betrag);
+        _ui.setPreisText(betrag);
+        _ui.setRestbetragText(betrag);
 
-        _ui.gibGezahltTextField().setText("");
+        _ui.getGezahltTextField().setText("");
         aktualisiereRestbetrag();
 
         _ui.zeigeDialog();
 
-        return _ui.gibStatusCode() == 1;
+        return _ui.getStatusCode() == 1;
     }
 
     /**
      * Listener-Methode, die den Inhalt des Rstbetrag-Feldes passend aktualisiert
      */
     private void aktualisiereRestbetrag() {
-        Geldbetrag gezahlt = _ui.gibEingegebenenBetrag();
+        Geldbetrag gezahlt = _ui.getEingegebenenBetrag();
         Geldbetrag rest = _betrag.diff(gezahlt);
 
-        //if (rest.gibEurocent() < 0) rest = new Geldbetrag();
+        //if (rest.getEurocent() < 0) rest = new Geldbetrag();
 
-        _ui.setzeRestbetragText(rest);
+        _ui.setRestbetragText(rest);
     }
 
     /**
      * Listener-Methode, die bei Druck auf den OK-Knopf prüft, ob der Verkauf passt
      */
     private void pruefeEingabe() {
-        Geldbetrag gezahlt = _ui.gibEingegebenenBetrag();
+        Geldbetrag gezahlt = _ui.getEingegebenenBetrag();
 
-        if (_betrag.diff(gezahlt).gibEurocent() <= 0) {
+        if (_betrag.diff(gezahlt).getEurocent() <= 0) {
             _ui.schließeFenster(1);
         } else {
             JOptionPane.showMessageDialog(null, "Zu wenig gezahlt!", "Fehler", JOptionPane.ERROR_MESSAGE);
-            _ui.gibGezahltTextField().requestFocus();
+            _ui.getGezahltTextField().requestFocus();
 
-            int textLaenge = _ui.gibGezahltTextField().getText().length();
-            _ui.gibGezahltTextField().setCaretPosition(textLaenge);
+            int textLaenge = _ui.getGezahltTextField().getText().length();
+            _ui.getGezahltTextField().setCaretPosition(textLaenge);
         }
     }
 }

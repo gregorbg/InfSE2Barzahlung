@@ -44,8 +44,8 @@ public class BarzahlungsWerkzeugUI
         JLabel gezahltTitelLabel = new JLabel("gezahlt");
         JLabel restTitelLabel = new JLabel("Restbetrag");
 
-        _preisLabel = new JLabel(new Geldbetrag().gibFormatiertenString());
-        _restbetragLabel = new JLabel(new Geldbetrag().gibFormatiertenString());
+        _preisLabel = new JLabel(new Geldbetrag().getFormatiertenString());
+        _restbetragLabel = new JLabel(new Geldbetrag().getFormatiertenString());
         Font boldFont = _preisLabel.getFont()
                 .deriveFont(Font.BOLD)
                 .deriveFont(32f);
@@ -98,7 +98,7 @@ public class BarzahlungsWerkzeugUI
      *
      * @return Eine Referenz auf den OK-Knopf
      */
-    public JButton gibOkButton()
+    public JButton getOkButton()
     {
         return _okButton;
     }
@@ -108,7 +108,7 @@ public class BarzahlungsWerkzeugUI
      *
      * @return Eine Referenz auf den Abbrechen-Knopf
      */
-    public JButton gibAbbrechenButton()
+    public JButton getAbbrechenButton()
     {
         return _abbrechenButton;
     }
@@ -118,7 +118,7 @@ public class BarzahlungsWerkzeugUI
      *
      * @return Eine Referenz auf das Bezahl-Betrags-Feld
      */
-    public JTextField gibGezahltTextField()
+    public JTextField getGezahltTextField()
     {
         return _gezahltTextField;
     }
@@ -129,11 +129,11 @@ public class BarzahlungsWerkzeugUI
      * @require preis != null
      * @param preis Der Geldbetrag
      */
-    public void setzePreisText(Geldbetrag preis)
+    public void setPreisText(Geldbetrag preis)
     {
         assert preis != null : "Vorbedingung verletzt: null";
 
-        _preisLabel.setText(preis.gibFormatiertenString());
+        _preisLabel.setText(preis.getFormatiertenString());
     }
 
     /**
@@ -142,11 +142,11 @@ public class BarzahlungsWerkzeugUI
      * @require rest != null
      * @param rest Der Geldbetrag
      */
-    public void setzeRestbetragText(Geldbetrag rest)
+    public void setRestbetragText(Geldbetrag rest)
     {
         assert rest != null : "Vorbedingung verletzt: null";
 
-        _restbetragLabel.setText(rest.gibFormatiertenString());
+        _restbetragLabel.setText(rest.getFormatiertenString());
     }
 
     /**
@@ -155,7 +155,7 @@ public class BarzahlungsWerkzeugUI
      * @return den Geldbetrag oder den Geldbetrag "0" falls der Nutzer nichts eingebeben hat
      * @ensure return != null
      */
-    public Geldbetrag gibEingegebenenBetrag()
+    public Geldbetrag getEingegebenenBetrag()
     {
         String eurocent = _gezahltTextField.getText().replaceAll("\\D", "");
 
@@ -181,7 +181,7 @@ public class BarzahlungsWerkzeugUI
      *
      * @return den Statuscode
      */
-    public int gibStatusCode()
+    public int getStatusCode()
     {
         return _statusCode;
     }

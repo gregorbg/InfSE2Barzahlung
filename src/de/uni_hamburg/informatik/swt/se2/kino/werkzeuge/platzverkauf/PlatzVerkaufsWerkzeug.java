@@ -127,13 +127,13 @@ public class PlatzVerkaufsWerkzeug
         {
             Geldbetrag preis = _vorstellung.getPreisFuerPlaetze(plaetze);
             _ui.getPreisLabel().setText(
-                    "Gesamtpreis: " + preis.gibFormatiertenString());
+                    "Gesamtpreis: " + preis.getFormatiertenString());
         }
         else if (istStornierenMoeglich(plaetze))
         {
             Geldbetrag preis = _vorstellung.getPreisFuerPlaetze(plaetze);
             _ui.getPreisLabel().setText(
-                    "Gesamtstorno: " + preis.gibFormatiertenString());
+                    "Gesamtstorno: " + preis.getFormatiertenString());
         }
         else if (!plaetze.isEmpty())
         {
@@ -143,7 +143,7 @@ public class PlatzVerkaufsWerkzeug
         else
         {
             _ui.getPreisLabel().setText(
-                    "Gesamtpreis: " + new Geldbetrag().gibFormatiertenString());
+                    "Gesamtpreis: " + new Geldbetrag().getFormatiertenString());
         }
     }
 

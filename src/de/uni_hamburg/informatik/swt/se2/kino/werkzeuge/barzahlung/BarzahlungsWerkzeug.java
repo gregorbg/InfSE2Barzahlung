@@ -100,7 +100,7 @@ public class BarzahlungsWerkzeug
         Geldbetrag gezahlt = _ui.gibEingegebenenBetrag();
         Geldbetrag rest = _betrag.diff(gezahlt);
 
-        if (rest.gibEurocent() < 0) rest = new Geldbetrag();
+        //if (rest.gibEurocent() < 0) rest = new Geldbetrag();
 
         _ui.setzeRestbetragText(rest);
     }

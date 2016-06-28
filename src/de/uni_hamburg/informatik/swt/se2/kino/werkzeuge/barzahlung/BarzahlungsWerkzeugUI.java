@@ -158,8 +158,22 @@ public class BarzahlungsWerkzeugUI
     public Geldbetrag gibEingegebenenBetrag()
     {
         String eurocent = _gezahltTextField.getText().replaceAll("\\D", "");
-        return new Geldbetrag(
-                eurocent.length() > 0 ? Integer.parseInt(eurocent) : 0);
+
+        Geldbetrag betrag;
+        if (eurocent.length() == 0)
+        {
+            betrag = new Geldbetrag();
+        }
+        else if (eurocent.length() > 10 || Long.parseLong(eurocent) > Integer.MAX_VALUE)
+        {
+            betrag = new Geldbetrag(Integer.MAX_VALUE);
+        }
+        else
+        {
+            betrag = new Geldbetrag(Integer.parseInt(eurocent));
+        }
+
+        return betrag;
     }
 
     /**
